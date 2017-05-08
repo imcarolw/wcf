@@ -28,4 +28,51 @@ namespace WcfService
         [return: System.Xml.Serialization.SoapElement(DataType = "string")]
         string ProcessCustomerData([MessageParameter(Name = "CustomerData")]CustomerObject customerData);
     }
+
+    [ServiceContract(Namespace = "http://tempuri.org/calc")]
+    public interface IRpcEncSingleNs1
+    {
+        [OperationContract]
+        int Sum(IntParams par);
+
+        [OperationContract]
+        float Divide(FloatParams par);
+
+        [OperationContract]
+        string Concatenate(IntParams par);
+
+        [OperationContract]
+        void DoSomething(IntParams par);
+
+        [OperationContract]
+        DateTime GetCurrentDateTime();
+
+        [OperationContract]
+        byte[] CreateSet(ByteParams par);
+    }
+
+    [ServiceContract]
+    public interface IRpcEncSingleNs2
+    {
+        [OperationContract]
+        void SayHello(string name);
+    }
+
+    public class IntParams
+    {
+        public int p1;
+        public int p2;
+    }
+
+    public class FloatParams
+    {
+        public float p1;
+        public float p2;
+    }
+
+    public class ByteParams
+    {
+        public byte p1;
+        public byte p2;
+    }
 }

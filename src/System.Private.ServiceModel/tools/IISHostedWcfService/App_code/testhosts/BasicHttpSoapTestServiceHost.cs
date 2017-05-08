@@ -32,4 +32,52 @@ namespace WcfService
         {
         }
     }
+
+    public class BasicHttpRpcEncSingleNsServiceHostFactory : ServiceHostFactory
+    {
+        protected override ServiceHost CreateServiceHost(Type serviceType, Uri[] baseAddresses)
+        {
+            var serviceHost = new BasicHttpRpcEncSingleNsServiceHost(serviceType, baseAddresses);
+            return serviceHost;
+        }
+    }
+
+    public class BasicHttpRpcEncSingleNsServiceHost : TestServiceHostBase<IRpcEncSingleNs1>
+    {
+        protected override string Address { get { return "Basic"; } }
+
+        protected override Binding GetBinding()
+        {
+            return new BasicHttpBinding();
+        }
+
+        public BasicHttpRpcEncSingleNsServiceHost(Type serviceType, params Uri[] baseAddresses)
+            : base(serviceType, baseAddresses)
+        {
+        }
+    }
+
+    public class BasicHttpRpcEncMultiNsServiceHostFactory : ServiceHostFactory
+    {
+        protected override ServiceHost CreateServiceHost(Type serviceType, Uri[] baseAddresses)
+        {
+            var serviceHost = new BasicHttpRpcEncMultiNsServiceHost(serviceType, baseAddresses);
+            return serviceHost;
+        }
+    }
+
+    public class BasicHttpRpcEncMultiNsServiceHost : TestServicesHostBase<IRpcEncSingleNs1,IRpcEncSingleNs2>
+    {
+        protected override string Address { get { return "Basic"; } }
+
+        protected override Binding GetBinding()
+        {
+            return new BasicHttpBinding();
+        }
+
+        public BasicHttpRpcEncMultiNsServiceHost(Type serviceType, params Uri[] baseAddresses)
+            : base(serviceType, baseAddresses)
+        {
+        }
+    }    
 }

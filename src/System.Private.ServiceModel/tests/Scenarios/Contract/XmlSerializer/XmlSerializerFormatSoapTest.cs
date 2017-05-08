@@ -60,6 +60,93 @@ public static partial class XmlSerializerFormatTests
         });
     }
 
+    //[WcfFact]
+    //[OuterLoop]
+    //public static void SingleContractNamespace_XmlSerializerFormat_RpcEncoded()
+    //{
+    //    bool testFailed = false;
+
+    //    foreach (AppHostType appHostType in new AppHostType[] { AppHostType.SelfHost, AppHostType.WebHost })
+    //    {
+    //        TestParameters.AppHostType = appHostType;
+    //        Log.Info("Variation : {0}", appHostType);
+
+    //        try
+    //        {
+    //            VariationHelper.RunVariation(typeof(RpcEncSingleNsService));
+    //            Log.Info("Variation passed");
+    //        }
+    //        catch (Exception exception)
+    //        {
+    //            testFailed = true;
+    //            Log.Error("Variation {0} failed with error :{1}", appHostType, exception);
+    //        }
+    //    }
+
+    //    if (testFailed)
+    //    {
+    //        throw new Exception("At least one of the variations failed. Look into the log for more details");
+    //    }
+    //}
+
+    //[WcfFact]
+    //[OuterLoop]
+    //public void MultipleBindingNamespaces_XmlSerializerFormat_RpcEncoded()
+    //{
+    //    bool testFailed = false;
+
+    //    foreach (AppHostType appHostType in new AppHostType[] { AppHostType.SelfHost, AppHostType.WebHost })
+    //    {
+    //        TestParameters.AppHostType = appHostType;
+    //        Log.Info("Variation : {0}", appHostType);
+
+    //        try
+    //        {
+    //            VariationHelper.RunVariation(typeof(RpcEncSingleNsService), true);
+    //            Log.Info("Variation passed");
+    //        }
+    //        catch (Exception exception)
+    //        {
+    //            testFailed = true;
+    //            Log.Error("Variation {0} failed with error :{1}", appHostType, exception);
+    //        }
+    //    }
+
+    //    if (testFailed)
+    //    {
+    //        throw new Exception("At least one of the variations failed. Look into the log for more details");
+    //    }
+    //}
+
+    //[WcfFact]
+    //[OuterLoop]
+    //public void MultipleNamespaces_XmlSerializerFormat_RpcEncoded()
+    //{
+    //    bool testFailed = false;
+
+    //    foreach (AppHostType appHostType in new AppHostType[] { AppHostType.SelfHost, AppHostType.WebHost })
+    //    {
+    //        TestParameters.AppHostType = appHostType;
+    //        Log.Info("Variation : {0}", appHostType);
+
+    //        try
+    //        {
+    //            VariationHelper.RunNegativeVariation(typeof(RpcEncMultiNsService));
+    //            Log.Info("Variation passed");
+    //        }
+    //        catch (Exception exception)
+    //        {
+    //            testFailed = true;
+    //            Log.Error("Variation {0} failed with error :{1}", appHostType, exception);
+    //        }
+    //    }
+
+    //    if (testFailed)
+    //    {
+    //        throw new Exception("At least one of the variations failed. Look into the log for more details");
+    //    }
+    //}
+
     private static void RunWcfSoapServiceTest(Action<IWcfSoapService> testMethod)
     {
         BasicHttpBinding binding;
@@ -86,4 +173,42 @@ public static partial class XmlSerializerFormatTests
             ScenarioTestHelpers.CloseCommunicationObjects((ICommunicationObject)serviceProxy);
         }
     }
+
+    //private static void RunRpcEncMetadataGenerationTest(Type serviceType, bool addExtraBindingNs)
+    //{
+    //    //Log.Info("Running variation using address: {0}", baseAddress.ToString());
+        
+    //    string wsdl = string.Format("{0}?wsdl", address);
+    //    string singleWsdl = string.Format("{0}?singleWsdl", address);
+
+    //    CodeGenerationArguments wsdlArguments = new CodeGenerationArguments()
+    //    {
+    //        SourceFiles = wsdl,
+    //        SelectedTool = SelectedTool.SvcUtilClient,
+    //        GenConfig = true
+    //    };
+    //    CodeGenerationArguments singleWsdlArguments = new CodeGenerationArguments()
+    //    {
+    //        SourceFiles = singleWsdl,
+    //        SelectedTool = SelectedTool.SvcUtilClient,
+    //        GenConfig = true
+    //    };
+
+    //    foreach (SerializerMode mode in Enum.GetValues(typeof(SerializerMode)))
+    //    {
+    //        Log.Info("Running variation using serializer: {0}", mode.ToString());
+
+    //        wsdlArguments.SerializerMode = mode;
+    //        singleWsdlArguments.SerializerMode = mode;
+
+    //        ToolInvoker.RunSvcUtil(wsdlArguments);
+    //        ToolInvoker.RunSvcUtil(singleWsdlArguments);
+
+    //        string wsdlGeneratedFile = string.Format("{0}{1}", wsdlArguments.SvcUtilOutputFile, wsdlArguments.Language.ToString().ToLower());
+    //        string singleWsdlGeneratedFile = string.Format("{0}{1}", singleWsdlArguments.SvcUtilOutputFile, singleWsdlArguments.Language.ToString().ToLower());
+
+    //        Validator.CompareFile(wsdlGeneratedFile, singleWsdlGeneratedFile, null, false);
+    //    }
+    //}
+
 }

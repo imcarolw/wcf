@@ -138,6 +138,35 @@ public interface IWcfSoapService
     string ProcessCustomerData(CustomerObject CustomerData);
 }
 
+[ServiceContract(Namespace = "http://tempuri.org/RpcEncSingleNs")]
+public interface IRpcEncSingleNs1
+{
+    [OperationContract]
+    int Sum(IntParams par);
+
+    [OperationContract]
+    float Divide(FloatParams par);
+
+    [OperationContract]
+    string Concatenate(IntParams par);
+
+    [OperationContract]
+    void DoSomething(IntParams par);
+
+    [OperationContract]
+    DateTime GetCurrentDateTime();
+
+    [OperationContract]
+    byte[] CreateSet(ByteParams par);
+}
+
+[ServiceContract]
+public interface IRpcEncSingleNs2
+{
+    [OperationContract]
+    void SayHello(string name);
+}
+
 // This type share the same name space with IWcfServiceXmlGenerated.
 // And this type contains a method which is also defined in IWcfServiceXmlGenerated.
 [ServiceContract(ConfigurationName = "IWcfService")]

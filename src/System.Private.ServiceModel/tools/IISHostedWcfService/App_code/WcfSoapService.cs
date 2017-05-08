@@ -33,4 +33,104 @@ namespace WcfService
             return customerData.Name + ((AdditionalData)customerData.Data).Field;
         }
     }
+
+    [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
+    public class RpcEncSingleNsService : IRpcEncSingleNs1
+    {
+        [OperationBehavior]
+        [XmlSerializerFormat(Style = OperationFormatStyle.Rpc, Use = OperationFormatUse.Encoded)]
+        public int Sum(IntParams par)
+        {
+            return par.p1 + par.p2;
+        }
+
+        [OperationBehavior]
+        [XmlSerializerFormat(Style = OperationFormatStyle.Rpc, Use = OperationFormatUse.Encoded)]
+        public float Divide(FloatParams par)
+        {
+            return (float)(par.p1 / par.p2);
+        }
+
+        [OperationBehavior]
+        [XmlSerializerFormat(Style = OperationFormatStyle.Rpc, Use = OperationFormatUse.Encoded)]
+        public string Concatenate(IntParams par)
+        {
+            return string.Format("{0}{1}", par.p1, par.p2);
+        }
+
+        [OperationBehavior]
+        [XmlSerializerFormat(Style = OperationFormatStyle.Rpc, Use = OperationFormatUse.Encoded)]
+        public void DoSomething(IntParams par)
+        {
+            //Log.Info("Inside DoSomething method...params: {0} {1}", par.p1, par.p2);
+        }
+
+        [OperationBehavior]
+        [XmlSerializerFormat(Style = OperationFormatStyle.Rpc, Use = OperationFormatUse.Encoded)]
+        public DateTime GetCurrentDateTime()
+        {
+            return DateTime.Now;
+        }
+
+        [OperationBehavior]
+        [XmlSerializerFormat(Style = OperationFormatStyle.Rpc, Use = OperationFormatUse.Encoded)]
+        public byte[] CreateSet(ByteParams par)
+        {
+            return new byte[] { par.p1, par.p2 };
+        }
+    }
+
+    [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
+    public class RpcEncMultiNsService : IRpcEncSingleNs1, IRpcEncSingleNs2
+    {
+        [OperationBehavior]
+        [XmlSerializerFormat(Style = OperationFormatStyle.Rpc, Use = OperationFormatUse.Encoded)]
+        public int Sum(IntParams par)
+        {
+            return par.p1 + par.p2;
+        }
+
+        [OperationBehavior]
+        [XmlSerializerFormat(Style = OperationFormatStyle.Rpc, Use = OperationFormatUse.Encoded)]
+        public float Divide(FloatParams par)
+        {
+            return (float)(par.p1 / par.p2);
+        }
+
+        [OperationBehavior]
+        [XmlSerializerFormat(Style = OperationFormatStyle.Rpc, Use = OperationFormatUse.Encoded)]
+        public string Concatenate(IntParams par)
+        {
+            return string.Format("{0}{1}", par.p1, par.p2);
+        }
+
+        [OperationBehavior]
+        [XmlSerializerFormat(Style = OperationFormatStyle.Rpc, Use = OperationFormatUse.Encoded)]
+        public void DoSomething(IntParams par)
+        {
+            //Log.Info("Inside DoSomething method...params: {0} {1}", par.p1, par.p2);
+        }
+
+        [OperationBehavior]
+        [XmlSerializerFormat(Style = OperationFormatStyle.Rpc, Use = OperationFormatUse.Encoded)]
+        public DateTime GetCurrentDateTime()
+        {
+            return DateTime.Now;
+        }
+
+        [OperationBehavior]
+        [XmlSerializerFormat(Style = OperationFormatStyle.Rpc, Use = OperationFormatUse.Encoded)]
+        public byte[] CreateSet(ByteParams par)
+        {
+            return new byte[] { par.p1, par.p2 };
+        }
+
+        [OperationBehavior]
+        [XmlSerializerFormat(Style = OperationFormatStyle.Rpc, Use = OperationFormatUse.Encoded)]
+        public void SayHello(string name)
+        {
+            //Log.Info("Hello {0}", name);
+        }
+    }
+
 }

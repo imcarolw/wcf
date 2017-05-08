@@ -39,6 +39,16 @@ public static partial class Endpoints
         get { return GetEndpointAddress("BasicHttpSoap.svc//Basic"); }
     }
 
+    public static string HttpBaseAddress_Basic_RpcEncSingleNs
+    {
+        get { return GetEndpointAddress("BasicHttpRpcEncSingleNs.svc//Basic"); }
+    }
+
+    public static string HttpBaseAddress_Basic_RpcEncMultiNs
+    {
+        get { return GetEndpointAddress("BasicHttpRpcEncMultiNs.svc//Basic"); }
+    }
+
     public static string HttpBaseAddress_NetHttp
     {
         get { return GetEndpointAddress("NetHttp.svc//NetHttp"); }
